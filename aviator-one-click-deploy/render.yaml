@@ -1,0 +1,17 @@
+
+services:
+  - type: web
+    name: aviator-client
+    env: static
+    staticPublishPath: client/build
+    buildCommand: cd client && npm install && npm run build
+
+  - type: web
+    name: aviator-server
+    env: node
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: node index.js
+    envVars:
+      - key: PORT
+        value: 5000
